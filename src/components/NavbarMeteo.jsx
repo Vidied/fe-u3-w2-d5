@@ -23,11 +23,11 @@ function NavbarMeteo({ onSearch }) {
           <Row className="justify-content-center">
             <Col xs={12} md={8} lg={6}>
               <Form.Control
-                style={{ backgroundColor: "#0D0D0D", color: "#003B00" }}
+                // style={{ backgroundColor: "#0D0D0D", color: "#003B00" }}
                 id="NavbarSearch"
                 type="search"
                 placeholder="Cerca la tua località! Es. Rome, IT"
-                className="rounded-pill shadow-none"
+                className="rounded-pill shadow-none placeholderCustom"
                 value={query}
                 onChange={(e) => {
                   setQuery(e.target.value);

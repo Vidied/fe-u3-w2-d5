@@ -1,0 +1,16 @@
+.placeholderCustom::placeholder {
+  color: #003b00 !important;
+  background-color: #0d0d0d !important;
+}
+
+.placeholderCustom {
+  color: #00ff41 !important;
+  background-color: #0d0d0d !important;
+  border: 1px solid #00ff41 !important;
+}
+
+.placeholderCustom:focus {
+  color: #00ff41 !important;
+  background-color: #0d0d0d !important;
+  border: 1px solid #00ff41 !important;
+}

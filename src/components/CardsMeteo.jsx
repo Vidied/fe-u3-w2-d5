@@ -9,7 +9,7 @@ import {
   Col,
 } from "react-bootstrap";
 
-const CardsMeteo = ({ city, countryCode }) => {
+const CardsMeteo = ({ city, countryCode, onDelete }) => {
   const [meteoData, setMeteoData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -83,6 +83,9 @@ const CardsMeteo = ({ city, countryCode }) => {
                   <p>{meteoData.main.temp}°C</p>
                 </Card.Text>
                 <Button variant="primary">Go somewhere</Button>
+                <Button variant="danger" onClick={onDelete}>
+                  Rimuovi
+                </Button>
               </Card.Body>
             </Card>
           )}
