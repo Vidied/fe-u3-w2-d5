@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Form, Row, Col, Container, Navbar } from "react-bootstrap";
 
-function NavbarMeteo() {
+function NavbarMeteo({ onSearch }) {
   const [query, setQuery] = useState("");
+
   const handleSearch = (e) => {
     e.preventDefault();
     console.log("Cerco il meteo per:", query);
+    onSearch(query);
   };
 
   return (
