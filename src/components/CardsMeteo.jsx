@@ -90,7 +90,7 @@ const CardsMeteo = ({ city, countryCode, onDelete }) => {
       <Row className="align-items-center">
         <Card className="cyber-card h-100">
           <Row className="g-0 h-100">
-            <Col xs={4} style={{ height: "180px" }}>
+            <Col xs={4} style={{ height: "180px" }} className="my-auto">
               <Card.Img
                 src={cityImage || "https://placecats.com/300/200"}
                 style={{
