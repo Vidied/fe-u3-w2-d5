@@ -13,6 +13,36 @@ const CardsMeteo = ({ city, countryCode, onDelete }) => {
   const [meteoData, setMeteoData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [cityImage, setCityImage] = useState(null);
+
+  const fetchCityImage = async (cityName) => {
+    if (!city) return;
+
+    try {
+      const response = await fetch(
+        `https://api.pexels.com/v1/search?query=${cityName}&per_page=1`,
+        {
+          headers: {
+            Authorization:
+              "BHcPyzIycHPf3X3vPfe241uV67ifUs6ZmbLdG2JrfmdIfJXwt8gpxNQb",
+          },
+        },
+      );
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Ricevuto i dati:", data);
+        setCityImage(data.photos[0].src.large);
+        setLoading(false);
+      } else {
+        console.error("Errore ricerca o Fetch immagine");
+        setCityImage("https://placecats.com/300/200");
+        setLoading(false);
+      }
+    } catch (error) {
+      console.log("Errore nel fetch immagine", error);
+      setCityImage("https://placecats.com/300/200");
+    }
+  };
 
   const fetcMeteo = async () => {
     if (!city) return;
@@ -27,6 +57,7 @@ const CardsMeteo = ({ city, countryCode, onDelete }) => {
         setMeteoData(data);
         setLoading(false);
         setError(false);
+        fetchCityImage(data.name);
       } else {
         console.error("Errore ricerca o Fetch");
         setLoading(false);
@@ -75,7 +106,7 @@ const CardsMeteo = ({ city, countryCode, onDelete }) => {
           )}
           {meteoData && !loading && (
             <Card>
-              {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
+              <Card.Img variant="top" src={cityImage} />
               <Card.Body>
                 <Card.Title>{meteoData.name}</Card.Title>
                 <Card.Text>
