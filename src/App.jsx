@@ -8,8 +8,9 @@ import { Container, Col, Row } from "react-bootstrap";
 function App() {
   const [cities, setCities] = useState([]);
   const addCity = (newCity) => {
-    if (newCity && !cities.includes(newCity)) {
-      setCities([newCity, ...cities]);
+    const citySmall = newCity.trim();
+    if (citySmall && !cities.includes(citySmall)) {
+      setCities([citySmall, ...cities]);
     }
   };
 
@@ -18,18 +19,17 @@ function App() {
   };
 
   return (
-    <div className="bg-dark vh-100">
+    <div className="bg-cyber min-vh-100">
       <NavbarMeteo onSearch={addCity}></NavbarMeteo>
       <main>
         <Container>
-          <Row>
+          <Row className="justify-content-center">
             {cities.map((cityName) => (
-              <Col key={cityName} xs={12} md={6} lg={4}>
-                <CardsMeteo
-                  city={cityName}
-                  onDelete={() => removeCity(cityName)}
-                />
-              </Col>
+              <CardsMeteo
+                key={cityName}
+                city={cityName}
+                onDelete={() => removeCity(cityName)}
+              />
             ))}
           </Row>
         </Container>
