@@ -18,3 +18,28 @@
 .bg-cyber {
   background-color: #0d0d0d;
 }
+
+.cyber-card {
+  background-color: #0d0d0d !important;
+  border: 1px solid #003b00 !important;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+.cyber-card:hover {
+  border-color: #00ff41 !important;
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.2) !important;
+  transform: translateY(-5px) !important;
+}
+
+.cyber-text-main {
+  color: #00ff41 !important;
+
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+}
+
+.cyber-temp {
+  color: #00ff41 !important;
+  font-weight: bold !important;
+  text-shadow: 0 0 5px rgba(0, 255, 65, 0.5) !important;
+}

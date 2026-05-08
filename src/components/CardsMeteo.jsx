@@ -32,11 +32,9 @@ const CardsMeteo = ({ city, countryCode, onDelete }) => {
         const data = await response.json();
         console.log("Ricevuto i dati:", data);
         setCityImage(data.photos[0].src.large);
-        setLoading(false);
       } else {
         console.error("Errore ricerca o Fetch immagine");
         setCityImage("https://placecats.com/300/200");
-        setLoading(false);
       }
     } catch (error) {
       console.log("Errore nel fetch immagine", error);
@@ -87,40 +85,68 @@ const CardsMeteo = ({ city, countryCode, onDelete }) => {
 
   return (
     <Container>
-      <Row>
-        <Col xs={12} md={8}>
-          {" "}
-          {loading && (
-            <Spinner
-              animation="border"
-              role="status"
-              style={{ color: "#00FF41" }}
-            >
-              <span className="visually-hidden">Loading...</span>
-            </Spinner>
-          )}
-          {error && (
-            <Alert style={{ backgroundColor: "#D1FF00", color: "#00FF41" }}>
-              Opss... C'è stato un errore!
-            </Alert>
-          )}
-          {meteoData && !loading && (
-            <Card>
-              <Card.Img variant="top" src={cityImage} />
-              <Card.Body>
-                <Card.Title>{meteoData.name}</Card.Title>
-                <Card.Text>
-                  <p>{meteoData.sys.country}</p>
-                  <p>{meteoData.main.temp}°C</p>
-                </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
-                <Button variant="danger" onClick={onDelete}>
-                  Rimuovi
-                </Button>
-              </Card.Body>
-            </Card>
-          )}
-        </Col>
+      <Row className="align-items-center">
+        <Card className="cyber-card h-100">
+          <Row className="g-0 h-100">
+            <Col xs={4} style={{ height: "180px" }}>
+              <Card.Img
+                src={cityImage || "https://placecats.com/300/200"}
+                style={{
+                  height: "100%",
+                  width: "100%",
+                  objectFit: "cover",
+                }}
+              />
+            </Col>{" "}
+            <Col xs={8}>
+              {loading && (
+                <Spinner
+                  animation="border"
+                  role="status"
+                  style={{ color: "#00FF41" }}
+                >
+                  <span className="visually-hidden">Loading...</span>
+                </Spinner>
+              )}
+              {error && (
+                <Alert style={{ backgroundColor: "#D1FF00", color: "#00FF41" }}>
+                  Opss... C'è stato un errore!
+                </Alert>
+              )}
+              {meteoData && !loading && (
+                <Card.Body>
+                  <Card.Title className="cyber-text-main">
+                    {meteoData.name}
+                  </Card.Title>
+                  <Card.Text>
+                    <p className="cyber-temp">{meteoData.sys.country}</p>
+                    <p className="cyber-temp">
+                      Il tempo è: {meteoData.weather[0].main} con{" "}
+                      {meteoData.weather[0].description}
+                    </p>{" "}
+                    <div className="d-flex justify-content-between">
+                      {" "}
+                      <p className="cyber-temp">
+                        Temperatura attuale: {meteoData.main.temp}°C
+                      </p>
+                      <p className="cyber-temp">
+                        Temperatura minima: {meteoData.main.temp_min}°C
+                      </p>
+                      <p className="cyber-temp">
+                        Temperatura massima: {meteoData.main.temp_max}°C
+                      </p>
+                    </div>
+                  </Card.Text>
+                  <div className="d-flex gap-2 align-items-center justify-content-end">
+                    <Button variant="danger" onClick={onDelete}>
+                      Rimuovi
+                    </Button>
+                  </div>
+                </Card.Body>
+              )}
+            </Col>
+          </Row>
+        </Card>
       </Row>
     </Container>
   );
