@@ -3,7 +3,7 @@ import NavbarMeteo from "./components/NavbarMeteo";
 import "bootstrap/dist/css/bootstrap.min.css";
 import CardsMeteo from "./components/CardsMeteo";
 import { useState } from "react";
-import { Container, Col, Row } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 
 function App() {
   const [cities, setCities] = useState([]);

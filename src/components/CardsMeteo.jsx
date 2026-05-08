@@ -69,7 +69,9 @@ const CardsMeteo = ({ city, countryCode, onDelete }) => {
   };
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetcMeteo();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [city, countryCode]);
 
   //   if (error) {
