@@ -84,7 +84,7 @@ const CardsMeteo = ({ city, countryCode, onDelete }) => {
   //   }
 
   return (
-    <Container>
+    <Container className="mt-2">
       <Row className="align-items-center">
         <Card className="cyber-card h-100">
           <Row className="g-0 h-100">
